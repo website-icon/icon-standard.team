@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>A New Website Icon Standard</title>
+    <link rel="shortcut icon" href="/.well-known/icons/favicon.ico">
+    <style>
+body {
+  font: normal 16px/1.333 Arial, sans-serif;
+  margin: 0;
+}
+main {
+  max-width: 60em;
+  padding: 2em 1em;
+  margin: 0 auto;
+}
+figure {
+  float: left;
+  margin: 0 1em 1em 0;
+}
+code {
+  font: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+  font-size: 1em;
+}
+pre {
+  padding: 1em;
+  box-shadow: inset 0 0 10px 2px #0002;
+  border-radius: 4px;
+}
+table {
+  border-collapse: collapse;
+}
+td, th {
+  padding: 0.5em;
+  border: 1px solid #0002;
+  border-width: 1px 0;
+  text-align: left;
+}
+hr {
+  border: none;
+  background: #0002;
+  height: 1px;
+  margin: 2em 0;
+}
+a {
+  color: #01806e;
+}
+a:visited {
+  color: #01685a;
+}
+a:focus, a:hover {
+  color: #0c7d6e;
+}
+a:focus {
+  outline: 3px solid #0c7d6e80;
+  outline-offset: 3px;
+}
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>A New Website Icon Standard</h1>
+      <figure>
+        <a href="https://github.com/website-icon/standard/blob/main/standard.md">
+          <img src=".well-known/icons/icon-128.png" alt="stylized image of a landscape, being repeated with smaller variants towards the top right"
+          width="128" height="128" srcset="
+            .well-known/icons/icon-128.png 1x,
+            .well-known/icons/icon-256.png 2x
+          ">
+        </a>
+      </figure>
+      <p>
+        <a href="https://github.com/website-icon/standard/blob/main/standard.md">Read the proposed standard</a>!
+      </p>
+
+      <hr>
+
+<p>The world is rather used to <strong>favicons</strong> now, that they are part of the web for
+over 20 years.
+While the good old favicon.ico itself can be used with no additional
+configuration by placing it in the docroot of a web server, the same is not
+true anymore for the lots of new icon formats, that newer web features
+require.</p>
+<p>To grasp a hold of the ever-changing landscape of icons, that are needed to
+represent a web site (or single web page) on all devices and in all situations,
+one needs to do extensive research.
+<a href="https://github.com/audreyfeldroy/favicon-cheat-sheet">Audrey Feldroy</a> did that
+and in the course a well-researched but very long article emerged for people
+to learn the dark art of the website icons.
+On the other end of the spectrum are great tools like <a href="https://realfavicongenerator.net/">Real Favicon
+Generator</a>, that try to minimize the need
+for a single developer to understand the technical details.</p>
+<p><a href="https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs">Andrey
+Sitnik</a>
+tried to boil down icon markup to the absolute minimum in order to support only
+the most popular devices.
+This is only marginally similar to what <a href="https://mathiasbynens.be/notes/touch-icons">Mathias
+Bynens</a> suggested 10 years ago on
+the same issue, with many changes rather subtle for people not into the
+research.
+And it is far from the humble beginnings of favicons, as <a href="https://www.w3.org/2005/10/howto-favicon">the W3C
+suggested</a> in 2005.</p>
+<p>In a nutshell, <strong>it’s a mess</strong>.</p>
+<p>In this situation Jeff Starr presents the need for a favicon standard
+eloquently in a <a href="https://perishablepress.com/favicon-standard/">blog post</a>.
+This was the starting point for creating this proposed standard.</p>
+<p>The target is to get back to the sweet spot between <strong>configuration and
+convention</strong>, where the most common cases can be handled with zero extra
+markup.</p>
+<p>Therefore we piggyback on RFC 8615, that standardizes the <code>/.well-known/</code>
+folder as something, that hosts files by convention.</p>
+<h2>How does it work?</h2>
+<p>The basic idea is simple: If a vendor needs a specifically sized icon for their
+platform, they <strong>register a name</strong> for it.
+This registry serves as central place to find out, which icons we need.</p>
+<p>For example, imagine PearGlyph Inc. introduces a new device, the TouchMagic
+tablet. For progressive web apps it needs icons in a pixel format, that are
+exactly 272 pixels wide. PearGlyph Inc. would then register the following
+icon names:</p>
+<pre><code>pearglyph-touchmagic-272.jpg
+pearglyph-touchmagic-272.png
+</code></pre>
+<p>If we want to support the TouchMagic device, we put an icon with such a name
+in the folder <code>/.well-known/icons/</code> in our docroot.</p>
+<p>The standard adds a short list of <strong>default icon names</strong>, too.
+Most prominently, it introduces</p>
+<pre><code>/.well-known/icons/favicon.svg
+</code></pre>
+<p>as default favicon to be used.
+The reasoning is, that using a vector format like SVG satisfies the most needs
+in parallel.</p>
+<p>For <strong>backwards compatibility</strong> a redirect from <code>/favicon.ico</code> to</p>
+<pre><code>/.well-known/icons/favicon.ico
+</code></pre>
+<p>will signal support for the standard to browsers.</p>
+<p>How does a client find icons? In order not to fish in muddy waters and send
+requests for potentially hundreds of matching icon names the standard demands
+a file <code>index.txt</code>, that is a plain-text <strong>list of supported icons</strong>.</p>
+<p>Such a list can be compiled rather quickly by sysadmins by running the command</p>
+<pre><code>find -L . -type f -printf '%P\n' &gt; index.txt
+</code></pre>
+<p>in a shell in the <code>/.well-known/icons</code> folder (on systems, that understand the
+<code>-printf</code> flag of <code>find</code>).</p>
+<h2>Quick start: How do I support the standard?</h2>
+<p>If you have an existing <code>favicon.ico</code> file already live on your server, all you
+need to do are three quick things:</p>
+<ol>
+<li>
+<p>Move the file:</p>
+<pre><code> mkdir -p .well-known/icons/
+ mv favicon.ico .well-known/icons/
+</code></pre>
+</li>
+<li>
+<p>Create the index file:</p>
+<pre><code> echo "favicon.ico" &gt; .well-known/icons/index.txt
+</code></pre>
+</li>
+<li>
+<p>Redirect requests from <code>/favicon.ico</code>. Example code for Apache <code>.htaccess</code>
+files:</p>
+<pre><code> RewriteEngine On
+ RewriteRule ^favicon.ico /.well-known/icons/favicon.ico [L]
+</code></pre>
+</li>
+</ol>
+<p>That’s it. Now you support the standard while being 100% backwards-compatible.</p>
+<p>If you cannot do step 3 in your setup, you can add the following line in your
+HTML files for the same effect:</p>
+<pre><code>&lt;link rel="shortcut icon" href="/.well-known/icons/favicon.ico"&gt;
+</code></pre>
+<h2>How to change icons quickly?</h2>
+<p>This is something the standard also strives to make as painless as possible.
+You can place a <em>set</em> of different icons in a sub-folder of
+<code>/.well-known/icons</code>.</p>
+<p>Let’s take a common use case: You want a different favicon on the development
+installation of your site from your live site.
+The solution with the website icon standard is to create a folder</p>
+<pre><code>/.well-known/icons/dev/
+</code></pre>
+<p>and place there a development version of your favicon.
+In the HTML files you activate the set with a single line,</p>
+<pre><code>&lt;meta name="icon-set" content="dev"&gt;
+</code></pre>
+<p>This is all.
+Now your dev server reminds you reliably by means of a favicon.</p>
+<h2>Who are we?</h2>
+<p>We are developers and designers who want to change the status quo of website
+icons. We want to make all our lives easier by adding opt-in conventions for
+the ever-expanding use of favicons.</p>
+<p>The standard was initiated by <a href="https://manuel-strehl.de">Manuel Strehl</a>.</p>
+<p>Come aboard! Make your opinion and experience heard by <a href="https://github.com/website-icon/standard/issues/new/choose">opening a new
+issue</a> or <a href="https://github.com/website-icon/standard/discussions">joining
+a discussion</a>.</p>
+<h3>Websites that already support the website icon standard</h3>
+<table>
+<thead>
+<tr>
+<th>icon</th>
+<th>website</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://camo.githubusercontent.com/a1e67b266014c8b04a40a4fd45fd819b8a2bf54956e617e2493d065eaec915d7/68747470733a2f2f6879706572666f726d2e6a732e6f72672f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67"><img src="https://camo.githubusercontent.com/a1e67b266014c8b04a40a4fd45fd819b8a2bf54956e617e2493d065eaec915d7/68747470733a2f2f6879706572666f726d2e6a732e6f72672f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67" alt="" data-canonical-src="https://hyperform.js.org/.well-known/icons/icon-32.png" style="max-width:100%;"></a></td>
+<td>hyperform.js.org (<a href="https://hyperform.js.org/.well-known/icons/index.txt"><code>index.txt</code></a>)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://camo.githubusercontent.com/70aa720edab0b058cd1f9132a1d8342d985324915117c8020f440501880aa926/68747470733a2f2f6d616e75656c2d73747265686c2e64652f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67"><img src="https://camo.githubusercontent.com/70aa720edab0b058cd1f9132a1d8342d985324915117c8020f440501880aa926/68747470733a2f2f6d616e75656c2d73747265686c2e64652f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67" alt="" data-canonical-src="https://manuel-strehl.de/.well-known/icons/icon-32.png" style="max-width:100%;"></a></td>
+<td>manuel-strehl.de (<a href="https://manuel-strehl.de/.well-known/icons/index.txt"><code>index.txt</code></a>)</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener noreferrer" href="https://camo.githubusercontent.com/bff26a97e67a9a6c3e9d4da3e0add1194c760b34a342a7da5f2aea8e2511b0d1/68747470733a2f2f7777772e6b696e65746971612e64652f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67"><img src="https://camo.githubusercontent.com/bff26a97e67a9a6c3e9d4da3e0add1194c760b34a342a7da5f2aea8e2511b0d1/68747470733a2f2f7777772e6b696e65746971612e64652f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67" alt="" data-canonical-src="https://www.kinetiqa.de/.well-known/icons/icon-32.png" style="max-width:100%;"></a></td>
+<td>kinetiqa.de (<a href="https://www.kinetiqa.de/.well-known/icons/index.txt"><code>index.txt</code></a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Add your site: Open an issue or send a pull request with the link to your
+website and to the icon.</p>
+
+      <hr>
+
+      <figure>
+        <a href="https://github.com/website-icon/standard/blob/main/standard.md">
+          <img src=".well-known/icons/icon-128.png" alt="stylized image of a landscape, being repeated with smaller variants towards the top right"
+          width="128" height="128" srcset="
+            .well-known/icons/icon-128.png 1x,
+            .well-known/icons/icon-256.png 2x
+          ">
+        </a>
+      </figure>
+      <p>
+        <a href="https://github.com/website-icon/standard/blob/main/standard.md">Read the proposed standard</a>!
+      </p>
+    </main>
+    <img referrerpolicy="no-referrer-when-downgrade" src="https://piwik.manuel-strehl.de/matomo.php?idsite=8&amp;rec=1" style="border:0" alt="">
+  </body>
+</html>

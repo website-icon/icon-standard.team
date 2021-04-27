@@ -1,0 +1,11 @@
+#
+# this is the list of icons currently supported by this website
+#
+# See https://icon-standard.team for details.
+#
+favicon.ico
+favicon.svg
+icon-128.png
+icon-256.png
+icon-32.png
+icon.svg
