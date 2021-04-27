@@ -2,12 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>A New Website Icon Standard</title>
+    <meta name="description" content="Building on the trusted favicon.ico this standard finally allows to define website icons without lots of markup.">
     <link rel="shortcut icon" href="/.well-known/icons/favicon.ico">
+    <link rel="apple-touch-icon" href="/.well-known/icons/icon-192.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@websiteicons">
+    <meta name="twitter:title" content="A New Website Icon Standard">
+    <meta name="twitter:description" content="Building on the trusted favicon.ico this standard finally allows to define website icons without lots of markup.">
+    <meta name="twitter:image" content="https://icon-standard.team/.well-known/icons/icon-128.png">
+    <meta property="og:site_name" content="Website Icon Standard">
+    <meta property="og:url" content="https://icon-standard.team/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="A New Website Icon Standard">
+    <meta property="og:description" content="Building on the trusted favicon.ico this standard finally allows to define website icons without lots of markup.">
+    <meta property="og:image" content="https://icon-standard.team/.well-known/icons/icon-128.png">
     <style>
 body {
   font: normal 16px/1.333 Arial, sans-serif;
   margin: 0;
+  --font-mod: 1.25;
 }
 main {
   max-width: 60em;
@@ -55,11 +70,25 @@ a:focus {
   outline: 3px solid #0c7d6e80;
   outline-offset: 3px;
 }
+h1, h2, h3, h4 {
+  font-weight: normal;
+}
+h1 {
+  font-size: calc(var(--font-mod) * var(--font-mod) * var(--font-mod) * var(--font-mod) * var(--font-mod) * 1rem);
+}
+h2 {
+  font-size: calc(var(--font-mod) * var(--font-mod) * var(--font-mod) * var(--font-mod) * 1rem);
+}
+h3 {
+  font-size: calc(var(--font-mod) * var(--font-mod) * var(--font-mod) * 1rem);
+}
+h4 {
+  font-size: calc(var(--font-mod) * var(--font-mod) * 1rem);
+}
     </style>
   </head>
   <body>
     <main>
-      <h1>A New Website Icon Standard</h1>
       <figure>
         <a href="https://github.com/website-icon/standard/blob/main/standard.md">
           <img src=".well-known/icons/icon-128.png" alt="stylized image of a landscape, being repeated with smaller variants towards the top right"
@@ -69,6 +98,7 @@ a:focus {
           ">
         </a>
       </figure>
+      <h1>A New Website Icon Standard</h1>
       <p>
         <a href="https://github.com/website-icon/standard/blob/main/standard.md">Read the proposed standard</a>!
       </p>
@@ -188,7 +218,7 @@ Now your dev server reminds you reliably by means of a favicon.</p>
 <p>We are developers and designers who want to change the status quo of website
 icons. We want to make all our lives easier by adding opt-in conventions for
 the ever-expanding use of favicons.</p>
-<p>The standard was initiated by <a href="https://manuel-strehl.de">Manuel Strehl</a>.</p>
+<p>The standard was initiated by <a href="https://manuel-strehl.de">Manuel Strehl</a>, <a href="https://twitter.com/m_strehl">@m_strehl</a>.</p>
 <p>Come aboard! Make your opinion and experience heard by <a href="https://github.com/website-icon/standard/issues/new/choose">opening a new
 issue</a> or <a href="https://github.com/website-icon/standard/discussions">joining
 a discussion</a>.</p>
@@ -202,21 +232,24 @@ a discussion</a>.</p>
 </thead>
 <tbody>
 <tr>
-<td><a target="_blank" rel="noopener noreferrer" href="https://camo.githubusercontent.com/a1e67b266014c8b04a40a4fd45fd819b8a2bf54956e617e2493d065eaec915d7/68747470733a2f2f6879706572666f726d2e6a732e6f72672f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67"><img src="https://camo.githubusercontent.com/a1e67b266014c8b04a40a4fd45fd819b8a2bf54956e617e2493d065eaec915d7/68747470733a2f2f6879706572666f726d2e6a732e6f72672f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67" alt="" data-canonical-src="https://hyperform.js.org/.well-known/icons/icon-32.png" style="max-width:100%;"></a></td>
+<td><a rel="noopener noreferrer" href="https://hyperform.js.org/.well-known/icons/icon-32.png"><img src="https://camo.githubusercontent.com/a1e67b266014c8b04a40a4fd45fd819b8a2bf54956e617e2493d065eaec915d7/68747470733a2f2f6879706572666f726d2e6a732e6f72672f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67" alt="icon for hyperform.js.org" data-canonical-src="https://hyperform.js.org/.well-known/icons/icon-32.png" width=32" height="32"></a></td>
 <td>hyperform.js.org (<a href="https://hyperform.js.org/.well-known/icons/index.txt"><code>index.txt</code></a>)</td>
 </tr>
 <tr>
-<td><a target="_blank" rel="noopener noreferrer" href="https://camo.githubusercontent.com/70aa720edab0b058cd1f9132a1d8342d985324915117c8020f440501880aa926/68747470733a2f2f6d616e75656c2d73747265686c2e64652f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67"><img src="https://camo.githubusercontent.com/70aa720edab0b058cd1f9132a1d8342d985324915117c8020f440501880aa926/68747470733a2f2f6d616e75656c2d73747265686c2e64652f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67" alt="" data-canonical-src="https://manuel-strehl.de/.well-known/icons/icon-32.png" style="max-width:100%;"></a></td>
+<td><a rel="noopener noreferrer" href="https://manuel-strehl.de/.well-known/icons/icon-32.png"><img src="https://camo.githubusercontent.com/70aa720edab0b058cd1f9132a1d8342d985324915117c8020f440501880aa926/68747470733a2f2f6d616e75656c2d73747265686c2e64652f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67" alt="icon for manuel-strehl.de" data-canonical-src="https://manuel-strehl.de/.well-known/icons/icon-32.png" width=32" height="32"></a></td>
 <td>manuel-strehl.de (<a href="https://manuel-strehl.de/.well-known/icons/index.txt"><code>index.txt</code></a>)</td>
 </tr>
 <tr>
-<td><a target="_blank" rel="noopener noreferrer" href="https://camo.githubusercontent.com/bff26a97e67a9a6c3e9d4da3e0add1194c760b34a342a7da5f2aea8e2511b0d1/68747470733a2f2f7777772e6b696e65746971612e64652f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67"><img src="https://camo.githubusercontent.com/bff26a97e67a9a6c3e9d4da3e0add1194c760b34a342a7da5f2aea8e2511b0d1/68747470733a2f2f7777772e6b696e65746971612e64652f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67" alt="" data-canonical-src="https://www.kinetiqa.de/.well-known/icons/icon-32.png" style="max-width:100%;"></a></td>
+<td><a rel="noopener noreferrer" href="https://www.kinetiqa.de/.well-known/icons/icon-32.png"><img src="https://camo.githubusercontent.com/bff26a97e67a9a6c3e9d4da3e0add1194c760b34a342a7da5f2aea8e2511b0d1/68747470733a2f2f7777772e6b696e65746971612e64652f2e77656c6c2d6b6e6f776e2f69636f6e732f69636f6e2d33322e706e67" alt="icon for kinetiqa.de" data-canonical-src="https://www.kinetiqa.de/.well-known/icons/icon-32.png" width=32" height="32"></a></td>
 <td>kinetiqa.de (<a href="https://www.kinetiqa.de/.well-known/icons/index.txt"><code>index.txt</code></a>)</td>
 </tr>
 </tbody>
 </table>
-<p>Add your site: Open an issue or send a pull request with the link to your
-website and to the icon.</p>
+<p>Add your site: <a
+href="https://github.com/website-icon/icon-standard.team/issues">Open an
+issue</a> or <a
+href="https://github.com/website-icon/icon-standard.team/pulls">send a pull
+request</a> with the link to your website and to the icon.</p>
 
       <hr>
 
@@ -233,6 +266,6 @@ website and to the icon.</p>
         <a href="https://github.com/website-icon/standard/blob/main/standard.md">Read the proposed standard</a>!
       </p>
     </main>
-    <img referrerpolicy="no-referrer-when-downgrade" src="https://piwik.manuel-strehl.de/matomo.php?idsite=8&amp;rec=1" style="border:0" alt="">
+    <img referrerpolicy="no-referrer-when-downgrade" src="https://piwik.manuel-strehl.de/matomo.php?idsite=8&amp;rec=1" style="border:0" alt="" width="1" height="1">
   </body>
 </html>
